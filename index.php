@@ -12,8 +12,6 @@ function dualLog(string $level, string $message): void
 
     // stdout
     file_put_contents('php://stdout', $line, FILE_APPEND);
-    // stderr
-    file_put_contents('php://stderr', $line, FILE_APPEND);
 }
 
 // Examples
