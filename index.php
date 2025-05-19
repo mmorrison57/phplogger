@@ -1,11 +1,21 @@
 <?php
-// Emit logs to App Service log stream:
-// INFO → STDOUT
-fwrite(STDOUT, "[INFO]  " . date('c') . " Page viewed: Welcome page loaded.\n");
-// WARN → STDERR
-fwrite(STDERR, "[WARN]  " . date('c') . " Just a sample warning.\n");
-// ERROR → STDERR via error_log()
-error_log("[ERROR] " . date('c') . " Sample error occurred.\n");
+// Report all PHP errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Log various message types
+error_log("INFO: Informational message");
+error_log("WARNING: Warning message");
+error_log("ERROR: Error message");
+error_log("DEBUG: Debug message");
+
+// Log a simulated exception
+try {
+    throw new Exception("Simulated exception for logging test");
+} catch (Exception $e) {
+    error_log("EXCEPTION: " . $e->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,3 +34,4 @@ error_log("[ERROR] " . date('c') . " Sample error occurred.\n");
   <button onclick="location.reload()">Reload &amp; Log Again</button>
 </body>
 </html>
+
