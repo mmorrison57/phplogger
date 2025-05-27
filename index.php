@@ -1,5 +1,5 @@
 <?php
-function dualLogStdOut(string $level, string $message): void
+function LogStdOut(string $level, string $message): void
 {
     // Level tag + space + message + newline
     $line = "{$level} {$message}\n";
@@ -8,7 +8,7 @@ function dualLogStdOut(string $level, string $message): void
     file_put_contents('php://stdout', $line, FILE_APPEND);
 }
 
-function dualLogStdErr(string $level, string $message): void
+function LogStdErr(string $level, string $message): void
 {
     // Level tag + space + message + newline
     $line = "{$level} {$message}\n";
@@ -18,10 +18,10 @@ function dualLogStdErr(string $level, string $message): void
 }
 
 // Examples
-dualLogStdOut('DEBUG', 'This is an debug message written to stdout.');
-dualLogStdOut('INFO',  'This is an informational message written to stdout.');
-dualLogStdOut('WARN',  'This is a warning message written to stdout.');
-dualLogStdErr('ERROR', 'This is an error message written to stderr.');
+LogStdOut('DEBUG', 'This is an debug message written to stdout.');
+LogStdOut('INFO',  'This is an informational message written to stdout.');
+LogStdOut('WARN',  'This is a warning message written to stdout.');
+LogStdErr('ERROR', 'This is an error message written to stderr.');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,4 +40,3 @@ dualLogStdErr('ERROR', 'This is an error message written to stderr.');
   <button onclick="location.reload()">Reload &amp; Log Again</button>
 </body>
 </html>
-
