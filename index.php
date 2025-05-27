@@ -1,11 +1,5 @@
 <?php
-/**
- * Log a message to both stdout and stderr, with the level at the very start.
- *
- * @param string $level   "DEBUG", "INFO", "WARN", "ERROR", etc.
- * @param string $message Your log text.
- */
-function dualLog(string $level, string $message): void
+function dualLogStdOut(string $level, string $message): void
 {
     // Level tag + space + message + newline
     $line = "{$level} {$message}\n";
@@ -14,11 +8,20 @@ function dualLog(string $level, string $message): void
     file_put_contents('php://stdout', $line, FILE_APPEND);
 }
 
+function dualLogStdErr(string $level, string $message): void
+{
+    // Level tag + space + message + newline
+    $line = "{$level} {$message}\n";
+
+    // stderr
+    file_put_contents('php://stderr', $line, FILE_APPEND);
+}
+
 // Examples
-dualLog('DEBUG', 'Starting page render.');
-dualLog('INFO',  'Page viewed: Welcome page loaded.');
-dualLog('WARN',  'Just a sample warning.');
-dualLog('ERROR', 'Sample error occurred.');
+dualLogStdOut('DEBUG', 'This is an debug message written to stdout.');
+dualLogStdOut('INFO',  'This is an informational message written to stdout.');
+dualLogStdOut('WARN',  'This is a warning message written to stdout.');
+dualLogStdErr('ERROR', 'This is an error message written to stderr.');
 ?>
 <!DOCTYPE html>
 <html lang="en">
